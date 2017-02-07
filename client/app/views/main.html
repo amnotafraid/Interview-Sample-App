@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row is-table-row">
+		<div class="col-sm-6">
+			<ul class="locations">
+        <li ng-repeat="location in aLocations track by $index" ng-click="showSelected($index)" ng-class="{selected: $index === selectedIndex}"><span class="zip">{{location.zip}}</span> {{location.location}}
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-6">
+			<div ng-show="selectedIndex > -1">
+				<div us-spinner ng-show="loading"></div>
+				<div ng-show="!loading">
+					<table class="table table-bordered table-details">
+						<tbody>
+              <tr>
+                <td data-title="" colspan="3" align="center" style="vertical-align:middle">{{ aLocations[selectedIndex].location }}</td>
+              </tr>
+							<tr>
+								<td data-title="Picture" rowspan="2" align="center"><img src="{{ icon }}" alt="weather picture"></br>{{ summary }}</td>
+								<td data-title="temperature"><b>min</b>: {{ minTemp }}&deg;</td>
+								<td data-title="" rowspan="2" align="center" style="vertical-align:middle"><a href="{{ urlMore }}" target="_blank">More Information</a></br>(new tab)</td>
+							</tr>
+							<tr>
+								<td data-title="temperature"><b>max</b>: {{ maxTemp }}&deg;</td>
+							</tr>
+							<tr>
+								<td data-title="" colspan="3" align="center" style="vertical-align:middle"><button class="btn" ng-click="showWeatherJSON()" ng-bind-html="fShowWeatherJSON ? 'Hide JSON' : 'Show JSON'"></button>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="fShowWeatherJSON">
+		<h1>Weather Data</h1>
+		<pre>
+			{{ data | json }}
+		</pre>
+	</div>
+</div>
+

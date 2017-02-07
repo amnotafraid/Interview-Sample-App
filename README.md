@@ -83,9 +83,6 @@ Here's a few references that I found helpful for figuring things out:
 <a id="front-page">
 ##</a> [top](#top)
 
-![meangeofrontpage](https://cloud.githubusercontent.com/assets/1727761/21756775/49639c26-d5eb-11e6-9b54-5cc0c8057e36.png)
-
-After you enter a US address, you can look for a map, the JSON code for the weather, or the weather.
 ![interviewapp](https://cloud.githubusercontent.com/assets/1727761/22679351/1f57d5e4-ecc7-11e6-8927-5ae1017b0423.png)
 <a id="host"></a>
 ##Host the code [top](#top)

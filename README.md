@@ -88,3 +88,5 @@ Here's a few references that I found helpful for figuring things out:
 ##Host the code [top](#top)
 I have instruction on how to host this code [here](https://amnotafraid.gitbooks.io/i-mean-it/content/hosting_on_bitnami.html)
 
+I hosted this little guy here:  [http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/](http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/) 
+

@@ -10,12 +10,10 @@
 }
 .locations li {
 	cursor: pointer;
-	position: relative;
-	left: 0;
+  cursor: hand;
 	background-color: #EEE;
 	margin: 1.0em;
-	padding: .3em 0;
-	height: 2.1em;
+	height: 2.2em;
 	border-radius: 4px;
   line-height: 1em;
 }
@@ -28,21 +26,14 @@
 	background-color: #DDD;
 	left: .1em;
 }
-.locations .text {
-	position: relative;
-	top: -3px;
-}
 .locations .zip {
 	display: inline-block;
-	font-size: small;
 	color: white;
-	padding: 0.8em 0.7em 0 0.7em;
+	padding: 0.7em 0.7em 0 0.7em;
 	background-color: #607D8B;
 	line-height: 1em;
 	position: relative;
-	left: -1px;
-	top: -4px;
-	height: 2.3em;
+	height: 2.2em;
 	margin-right: .8em;
 	border-radius: 4px 0 0 4px;
 }
@@ -60,4 +51,61 @@
 
 .table-details {
 	margin-top: 20px;
+/*
+  border-collapse: collapse;
+  border: 1px solid #607D8B;
+	border-radius:4px;
+	-moz-border-radius:4px;
+*/
 }
+
+.td-location {
+   vertical-align: middle;
+   width: 335px;
+   height: 37px;
+   border: none;
+   font-size: small;
+   color: white;
+   background-color: #607D8B;
+   border-radius: 4px 4px 0 0;
+ }
+
+.td-summary {
+	background-color: #EEE;
+  text-align: center;
+  width: 146px;
+  height: 115px;
+}
+
+.td-min {
+	background-color: #EEE;
+  width: 70px;
+  height: 57px;
+  border: none;
+}
+
+.td-max {
+	background-color: #EEE;
+  width: 70px;
+  height: 57px;
+  border: none;
+}
+
+.td-more {
+	background-color: #EEE;
+  vertical-align:middle;
+  text-align: center;
+  width: 118px;
+  height: 115px;
+}
+
+.td-json {
+  width: 334px;
+  height: 51px;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+	background-color: #EEE;
+  border-radius: 0px 0px 4px 4px;
+}
+

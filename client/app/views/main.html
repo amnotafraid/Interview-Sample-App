@@ -10,21 +10,21 @@
 			<div ng-show="selectedIndex > -1">
 				<div us-spinner ng-show="loading"></div>
 				<div ng-show="!loading">
-					<table class="table table-bordered table-details">
+					<table class="table-details">
 						<tbody>
               <tr>
-                <td data-title="" colspan="3" align="center" style="vertical-align:middle">{{ aLocations[selectedIndex].location }}</td>
+                <td data-title="" colspan="3" align="center" class="td-location">{{ aLocations[selectedIndex].location }}</td>
               </tr>
 							<tr>
-								<td data-title="Picture" rowspan="2" align="center"><img src="{{ icon }}" alt="weather picture"></br>{{ summary }}</td>
-								<td data-title="temperature"><b>min</b>: {{ minTemp }}&deg;</td>
-								<td data-title="" rowspan="2" align="center" style="vertical-align:middle"><a href="{{ urlMore }}" target="_blank">More Information</a></br>(new tab)</td>
+								<td data-title="Picture" rowspan="2" class="td-summary"><img src="{{ icon }}" alt="weather picture"></br>{{ summary }}</td>
+                <td data-title="temperature" class="td-min"><b>min</b>:</br>{{ minTemp }}&deg;</td>
+								<td data-title="" rowspan="2" class="td-more"><a href="{{ urlMore }}" target="_blank">More Information</a></br>(new tab)</td>
 							</tr>
 							<tr>
-								<td data-title="temperature"><b>max</b>: {{ maxTemp }}&deg;</td>
+                <td data-title="temperature" class="td-max"><b>max</b>:</br>{{ maxTemp }}&deg;</td>
 							</tr>
 							<tr>
-								<td data-title="" colspan="3" align="center" style="vertical-align:middle"><button class="btn" ng-click="showWeatherJSON()" ng-bind-html="fShowWeatherJSON ? 'Hide JSON' : 'Show JSON'"></button>
+								<td data-title="" colspan="3" class="td-json"><button class="btn" ng-click="showWeatherJSON()" ng-bind-html="fShowWeatherJSON ? 'Hide JSON' : 'Show JSON'"></button>
 						</tbody>
 					</table>
 				</div>

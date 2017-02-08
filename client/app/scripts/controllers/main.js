@@ -14,33 +14,58 @@ angular.module('clientApp')
     '$window',
   function ($http, $scope, $window) { // note the added $http depedency
 
-    $scope.loading = true;
+    $scope.loading = true; 	// controls the loading spinner in weather detail
+    $scope.zipcode = '';    // entered by user
     $scope.aLocations = [
-      { id: 1, zip: 61801, location: 'Urbana, IL', latitude: 40.10243, longitude: -88.19666 },
-      { id: 2, zip: 75230, location: 'Dallas, TX', latitude: 32.90351, longitude: -96.771194 },
-      { id: 3, zip: 20500, location: 'Washington, DC', latitude: 38.898754, longitude: -77.03535 },
-      { id: 4, zip: 98804, location: 'Bellevue, WA', latitude: 47.616505, longitude: -122.20169 },
-      { id: 5, zip: 80301, location: 'Boulder, CO', latitude: 40.059013, longitude: -105.21812 }
+      { zip: 61801, location: 'Urbana, IL', latitude: 40.10243, longitude: -88.19666 },
+      { zip: 75230, location: 'Dallas, TX', latitude: 32.90351, longitude: -96.771194 },
+      { zip: 20500, location: 'Washington, DC', latitude: 38.898754, longitude: -77.03535 },
+      { zip: 98804, location: 'Bellevue, WA', latitude: 47.616505, longitude: -122.20169 },
+      { zip: 80301, location: 'Boulder, CO', latitude: 40.059013, longitude: -105.21812 }
     ];
 
-		$scope.selectedIndex = -1;
-		$scope.fShowWeatherJSON = false;
+		$scope.selectedIndex = -1; // shows which of the six location is selected
+		$scope.fShowWeatherJSON = false; // show/hide weather JSON data
 
-    console.log('MainCtrl');
-    // This is our method that will post to our server.
-    /*
-    $http({
-      method: 'GET',
-      url: '/locations'
-    }).then(function successCallback(response) {
-      $scope.aLocations = response.data;
-    }, function errorCallback(response) {
-      $window.alert('Got an error from GET /locations');
-    });
-    */
+		/**
+			* When the user clicks on 'New', this function
+			* gets called.  It is a completely overbuilt
+      * route to turn a zipcode into data like in
+      * aLocations
+      **/
+		$scope.addZipcode = function () {
 
+			$http({
+				method: 'POST',
+				data: {
+					zipcode: $scope.zipcode
+				},
+				url: '/zippopotomus'
+			}).then(function successCallback(response) {
+				console.log('zippopotomus to the rescue!');
+				$scope.aLocations.unshift(response.data);
+			}, function errorCallback(response) {
+				$window.alert(response.data.message);
+			});
+		};
+
+		/**
+      * Controls the ng-disable on the 'New' button.
+      * User must type in five digits to get the
+      * button enabled
+      **/
+		var pattern = new RegExp('^\\d{5}$');
+		$scope.isValidZipcode = function () {
+      var OK = pattern.test($scope.zipcode);
+			return OK;
+		};
+
+		/**
+      * If the user clicks on one of the aLocations
+      * this will go fetch some weather information
+      * about that location.
+      **/
 		$scope.showSelected = function(index) {
-			console.log('select function');
 			$scope.selectedIndex = index;	
 			$scope.fShowWeatherJSON = false;
 
@@ -52,7 +77,6 @@ angular.module('clientApp')
 				},
 				url: '/someWeather'
 			}).then(function successCallback(response) {
-				console.log('got the weather');
 				$scope.maxTemp = response.data['Daily Maximum Temperature'];
 				$scope.minTemp = response.data['Daily Minimum Temperature'];
 				$scope.summary = response.data['summary'];
@@ -64,6 +88,11 @@ angular.module('clientApp')
 			});
 		};
 
+		/**
+      * If the user clicks on 'Show JSON' this handles
+      * going to get the JSON data and toggling the show/hide
+      * mumbo jumbo.
+      **/
 		$scope.showWeatherJSON = function() {
 			if ($scope.fShowWeatherJSON) {
 				$scope.fShowWeatherJSON = false;

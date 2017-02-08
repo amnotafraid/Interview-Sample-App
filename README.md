@@ -7,7 +7,7 @@
 
 * [Run the Code](#run)
 
-* [References](#reference)
+* [References](#references)
 
 * [Host the Code](#host)
 

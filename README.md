@@ -1,16 +1,13 @@
+<a id="top"></a>
 # Interview-Sample-App
 
-<a id="top"></a>
-#MeanGeo
 * [Introduction](#intro)
-
-* [References](#reference)
 
 * [Build the Code](#build)
 
 * [Run the Code](#run)
 
-* [View of Front Page](#front-page)
+* [References](#reference)
 
 * [Host the Code](#host)
 
@@ -26,20 +23,6 @@ At first, I thought the US Census Geocoder and angular-google-maps were going to
 The weather thing *_is_* a WSDL.  I had to create a SOAP client with the NDFD WSDL XML, and then thread through the responding XML.
 
 One more thing, calling this a MEAN application is a bit of a misnomer.  M stands for Mongo.  I don't store any data, so I'm not using Mongo.  I think I tore all the database stuff out of this thing after I cloned it from [MeanSeed](https://github.com/amnotafraid/MeanSeed).  I guess it's an EAN stack application.
-
-<a id="references"></a>
-##References [top](#top)
-
-Here's a few references that I found helpful for figuring things out:
-
-| Description  | Link |
-| ------------- | ------------- |
-| SoapUI is a handy application for deciphering and testing WSDLs  | [SoapUI](https://www.soapui.org/)  |
-| Herong's tutorials will help you figure out SoapUI and learn about free web services  | [Free Web Services - Herong's Tutorial Examples](http://www.herongyang.com/Free-Web-Service/index.html)  |
-| This post was really useful in figuring out how to deal with SOAP APIs and XML in Node.js | [Jowanza Joseph](http://www.jowanza.com/post/125602755114/dealing-with-soap-apis-in-nodejs) |
-
-*_Using_* a WSDL is a lot different from *_developing_* a WSDL.  If you've got to do that, I found this fabulous tutorial, understatedly referred to as a 'primer', from W3C:  [W3C WSDL Primer](https://www.w3.org/TR/wsdl20-primer/)
-
 <a id="build"></a>
 ##Build the Code [top](#top)
 Some version info:
@@ -83,14 +66,27 @@ npm test
 ```
 Open up a browser at http://localhost:3000. You should see your app:
 
+<a id="references"></a>
+##References [top](#top)
+
+Here's a few references that I found helpful for figuring things out:
+
+| Description  | Link |
+| ------------- | ------------- |
+| SoapUI is a handy application for deciphering and testing WSDLs  | [SoapUI](https://www.soapui.org/)  |
+| Herong's tutorials will help you figure out SoapUI and learn about free web services  | [Free Web Services - Herong's Tutorial Examples](http://www.herongyang.com/Free-Web-Service/index.html)  |
+| This post was really useful in figuring out how to deal with SOAP APIs and XML in Node.js | [Jowanza Joseph](http://www.jowanza.com/post/125602755114/dealing-with-soap-apis-in-nodejs) |
+
+*_Using_* a WSDL is a lot different from *_developing_* a WSDL.  If you've got to do that, I found this fabulous tutorial, understatedly referred to as a 'primer', from W3C:  [W3C WSDL Primer](https://www.w3.org/TR/wsdl20-primer/)
+
+
 <a id="front-page">
 ##</a> [top](#top)
 
-![meangeofrontpage](https://cloud.githubusercontent.com/assets/1727761/21756775/49639c26-d5eb-11e6-9b54-5cc0c8057e36.png)
-
-After you enter a US address, you can look for a map, the JSON code for the weather, or the weather.
-![withlatlong](https://cloud.githubusercontent.com/assets/1727761/21756803/9ca66c74-d5eb-11e6-8dbf-9f9f4145b2ee.png)
+![interviewapp](https://cloud.githubusercontent.com/assets/1727761/22679351/1f57d5e4-ecc7-11e6-8927-5ae1017b0423.png)
 <a id="host"></a>
 ##Host the code [top](#top)
 I have instruction on how to host this code [here](https://amnotafraid.gitbooks.io/i-mean-it/content/hosting_on_bitnami.html)
+
+I hosted this little guy here:  [http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/](http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/) 
 

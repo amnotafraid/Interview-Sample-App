@@ -14,15 +14,16 @@
 <a id="intro"></a>
 ##Introduction [top](#top)
 
-I wanted to learn about WSDL (pronounced wiz-dull) format, so I set out to use one.
+The request was as follows: 
+> We want to test your mettle. So - we ask that you submit a pull request to our GitHub project of a small sample app that does the following:
 
-This uses [NDFD WSDL](http://graphical.weather.gov/xml/) to get weather information in a MEAN stack application.  [US Census Geocoder](https://geocoding.geo.census.gov/) converts a US address to lat and long, and  [angular-google-maps](https://angular-ui.github.io/angular-google-maps/#!/) shows a map.
+> * Uses Bootstrap with either AngularJS or Vue.js
+> * Create a single page web app that pulls information from a REST API and displays it to the user. There should be at least 2 routes: 1 that provides an item list for the user to select, the other should provide details about that item.
 
-At first, I thought the US Census Geocoder and angular-google-maps were going to help me learn about WSDLs, but they're not WSDLs.  The Geocoder thing is a REST API.  I just smack some URL parameters on the back of a URL and do a request, and it responds with some nice JSON data.  With angular-google-maps, it's even simpler.  It all happens on the client side.  You just hand it a lat and long and a few other parameters, stick it in a div, and you've got a map.
+The application that I built uses [NDFD WSDL](http://graphical.weather.gov/xml/) to get weather information in a MEAN stack application, although MEAN stack is a bit of an overstatement because I ripped the Mongo stuff out of the backend because I don't store any data.
 
-The weather thing *_is_* a WSDL.  I had to create a SOAP client with the NDFD WSDL XML, and then thread through the responding XML.
+It looks like this:
 
-One more thing, calling this a MEAN application is a bit of a misnomer.  M stands for Mongo.  I don't store any data, so I'm not using Mongo.  I think I tore all the database stuff out of this thing after I cloned it from [MeanSeed](https://github.com/amnotafraid/MeanSeed).  I guess it's an EAN stack application.
 <a id="build"></a>
 ##Build the Code [top](#top)
 Some version info:
@@ -31,19 +32,17 @@ Some version info:
 node -v
 v6.0.0
 /**
- * @license AngularJS v1.5.10
- * (c) 2010-2016 Google, Inc. http://angularjs.org
- * LLicense: MIT
+ * @license AngularJS v1.5.11
+ * (c) 2010-2017 Google, Inc. http://angularjs.org
+ * License: MIT
  */
- npm -v express
+npm -v express
 3.8.6
 ```
 If you have Node, Bower, Compass, and Git installed on a Mac OSX computer, you can deploy the MeanSeed application as follows. These directions should work for a Windows environment with some modifications.
 
-First, clone the MeanGeo code. In the directory where you want the root, do a git clone. It will create a MeanSeed directory and get all the code inside that directory:
-```
-git clone https://github.com/amnotafraid/MeanGeo.git
-```
+First, clone the code.
+
 In the MeanGeo/client directory, install the software needed like this:
 ```
 npm install
@@ -73,20 +72,15 @@ Here's a few references that I found helpful for figuring things out:
 
 | Description  | Link |
 | ------------- | ------------- |
+| The weather service seems to have about a g-zillion different acronyms.  It is a genuine SOAP service, as opposed to being a REST API. | [NDFD/NOAA/NWSNDFD](http://www.nws.noaa.gov/ndfd/technical.htm) |
+| Zippopotom.us is a free web service for getting lat/long from a zipcode | [Zipopotam.us](http://www.zippopotam.us/) |
 | SoapUI is a handy application for deciphering and testing WSDLs  | [SoapUI](https://www.soapui.org/)  |
 | Herong's tutorials will help you figure out SoapUI and learn about free web services  | [Free Web Services - Herong's Tutorial Examples](http://www.herongyang.com/Free-Web-Service/index.html)  |
 | This post was really useful in figuring out how to deal with SOAP APIs and XML in Node.js | [Jowanza Joseph](http://www.jowanza.com/post/125602755114/dealing-with-soap-apis-in-nodejs) |
 
 *_Using_* a WSDL is a lot different from *_developing_* a WSDL.  If you've got to do that, I found this fabulous tutorial, understatedly referred to as a 'primer', from W3C:  [W3C WSDL Primer](https://www.w3.org/TR/wsdl20-primer/)
 
-
-<a id="front-page">
-##</a> [top](#top)
-
-![interviewapp](https://cloud.githubusercontent.com/assets/1727761/22679351/1f57d5e4-ecc7-11e6-8927-5ae1017b0423.png)
 <a id="host"></a>
 ##Host the code [top](#top)
 I have instruction on how to host this code [here](https://amnotafraid.gitbooks.io/i-mean-it/content/hosting_on_bitnami.html)
-
-I hosted this little guy here:  [http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/](http://ec2-35-166-238-173.us-west-2.compute.amazonaws.com:3000/#/) 
 

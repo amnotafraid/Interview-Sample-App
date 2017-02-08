@@ -1,5 +1,6 @@
 var soap =          require('soap');
 var parseString =   require('xml2js').parseString;
+
 var url = 'http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl';
 var args = {
 				latitude: 0,
@@ -10,6 +11,14 @@ var args = {
         format: '12 hourly'
 };
 
+/**
+ * This is going to take a latitude and longitude,
+ * call the National Digital Forecast Database,
+ * thread through the pile of XML to find some nice
+ * little things to share and send them back
+ *
+ * Some - some details
+ **/
 exports.some = function (req, res, next) {
   console.log('body = ' + JSON.stringify(req.body, null, 2));
   soap.createClient(url, function(err, client) {
@@ -56,6 +65,23 @@ exports.some = function (req, res, next) {
   });
 };
 
+/**
+ * This is going to take a latitude and longitude,
+ * call the National Digital Forecast Database,
+ * parse all the XML that comes back into JSON and
+ * send that all back so the user can look at it
+ * and scratch their head if they want to.
+ *
+ * All - All the weather XML
+ *
+ * I didn't really write a master detail.  I wrote
+ * a here's a few starter masters and you can add your
+ * own if you want to.  After you get the master's that
+ * you want, you can get a little bit of details.  If
+ * that's not enough you can get all the details.  And
+ * if you're still not satisfied, you can just click on
+ * the link for the NDFD website.
+ **/
 exports.all = function (req, res, next) {
   console.log('body = ' + JSON.stringify(req.body, null, 2));
   soap.createClient(url, function(err, client) {

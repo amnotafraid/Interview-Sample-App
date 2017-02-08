@@ -1,8 +1,23 @@
 <div class="container">
 	<div class="row is-table-row">
 		<div class="col-sm-6">
+      <div class="cute-zip-input">
+				<label><span class="zip">Zip:&nbsp;&nbsp;</span></label>
+				<input id="zipcode" 
+							 name="zipcode" 
+               ng-model="zipcode" 
+               type="text" 
+							 placeholder="enter zip" 
+               class="zip-input">
+				 <button class="btn" 
+								 ng-click="addZipcode()"
+								 ng-disabled="!isValidZipcode()">New</button>
+			</div>
 			<ul class="locations">
-        <li ng-repeat="location in aLocations track by $index" ng-click="showSelected($index)" ng-class="{selected: $index === selectedIndex}"><span class="zip">{{location.zip}}</span> {{location.location}}
+        <li ng-repeat="location in aLocations | limitTo: 5 track by $index" 
+						ng-click="showSelected($index)" 
+						ng-class="{selected: $index === selectedIndex}">
+					<span class="zip">{{location.zip}}</span> {{location.location}}
 				</li>
 			</ul>
 		</div>
@@ -13,7 +28,7 @@
 					<table class="table-details">
 						<tbody>
               <tr>
-                <td data-title="" colspan="3" align="center" class="td-location">{{ aLocations[selectedIndex].location }}</td>
+                <td data-title="" colspan="3" class="td-location">{{ aLocations[selectedIndex].location }}</td>
               </tr>
 							<tr>
 								<td data-title="Picture" rowspan="2" class="td-summary"><img src="{{ icon }}" alt="weather picture"></br>{{ summary }}</td>
@@ -32,7 +47,6 @@
 		</div>
 	</div>
 	<div class="row" ng-show="fShowWeatherJSON">
-		<h1>Weather Data</h1>
 		<pre>
 			{{ data | json }}
 		</pre>

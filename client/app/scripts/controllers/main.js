@@ -16,13 +16,22 @@ angular.module('clientApp')
 
     $scope.loading = true; 	// controls the loading spinner in weather detail
     $scope.zipcode = '';    // entered by user
-    $scope.aLocations = [
-      { zip: 61801, location: 'Urbana, IL', latitude: 40.10243, longitude: -88.19666 },
-      { zip: 75230, location: 'Dallas, TX', latitude: 32.90351, longitude: -96.771194 },
-      { zip: 20500, location: 'Washington, DC', latitude: 38.898754, longitude: -77.03535 },
-      { zip: 98804, location: 'Bellevue, WA', latitude: 47.616505, longitude: -122.20169 },
-      { zip: 80301, location: 'Boulder, CO', latitude: 40.059013, longitude: -105.21812 }
-    ];
+    var slick = $window.localStorage.getItem('slick');
+    if (slick) {
+      $scope.aLocations = JSON.parse(slick);
+    }
+    else {
+      $scope.aLocations = [
+        { zip: 61801, location: 'Urbana, IL', latitude: 40.10243, longitude: -88.19666 },
+        { zip: 75230, location: 'Dallas, TX', latitude: 32.90351, longitude: -96.771194 },
+        { zip: 20500, location: 'Washington, DC', latitude: 38.898754, longitude: -77.03535 },
+        { zip: 98804, location: 'Bellevue, WA', latitude: 47.616505, longitude: -122.20169 },
+        { zip: 80301, location: 'Boulder, CO', latitude: 40.059013, longitude: -105.21812 }
+      ];
+      
+      $window.localStorage.setItem('slick', 
+                                   JSON.stringify($scope.aLocations));
+    }
 
 		$scope.selectedIndex = -1; // shows which of the six location is selected
 		$scope.fShowWeatherJSON = false; // show/hide weather JSON data
@@ -44,6 +53,9 @@ angular.module('clientApp')
 			}).then(function successCallback(response) {
 				console.log('zippopotomus to the rescue!');
 				$scope.aLocations.unshift(response.data);
+        $scope.aLocations.pop();
+        $window.localStorage.setItem(['slick'], 
+                                     JSON.stringify($scope.aLocations));
 			}, function errorCallback(response) {
 				$window.alert(response.data.message);
 			});
